@@ -1,0 +1,57 @@
+`timescale 1ns/1ns
+ 
+module  valid_ready(
+  input        rst_n  ,
+	input 				clk 	,   
+	input				valid_in,
+  input       valid_out,
+	input	 			ready_in,
+  input       ready_out,
+  input       data_in ,
+  output      data_out,
+);       
+   reg [1:0]num;
+ 
+    always @(posedge clk or negedge rst_n) begin
+        if(!rst_n)   
+            num  <= 0;  
+        else if( !valid_out)  
+            num  <=(num==3)? 0:num+1; 
+    end
+   
+   always @(posedge clk or negedge rst_n) begin
+        if(!rst_n)  
+            valid_out <= 0;
+        else if(! ready_out)  
+            valid_out <=1 ; 
+   end
+
+    always @(posedge clk or negedge rst_n) begin
+        if(!rst_n)  
+             valid_out <= 0;
+        else if(num == 3 && !valid_out)  
+             valid_out <=1 ; 
+        else if(ready_out&& valid_out) 
+             valid_out<=0 ;
+             ready_out<=0 ; 
+
+    end
+     always @(posedge clk or negedge rst_n) begin
+        if(!rst_n)  
+            ready_out <= 0;
+        else if( valid_out )  
+            ready_out <=1 ; 
+        else if(!valid_out&&ready_out)
+          ready_out<=ready_in;   //打拍
+     
+    end
+    always @(posedge clk or negedge rst_n) begin
+        if(!rst_n)  
+            data_out <= 0;
+        else if(num == 0 && ready_ot && valid_out ) 
+            data_out <=data_in;
+        else if( valid_out && ready_out )
+            data_out <= data_out + data_in;   
+    end
+        
+endmodule
