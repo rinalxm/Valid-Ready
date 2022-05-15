@@ -35,7 +35,7 @@ module  valid_ready(
              valid_out<=0 ;
              ready<=0 ; 
         else if(num<=3&&valid_out)
-            vaild_out<=valid_in;
+            vaild_out<=valid_in;//valid打拍
 
     end
      always @(posedge clk or negedge rst_n) begin
