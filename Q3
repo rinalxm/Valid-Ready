@@ -41,7 +41,7 @@ module  valid_ready(
         else if( valid )  
             ready_out <=1 ; 
         else if(!valid&&ready_out)
-          ready_out<=ready_in;   //打拍
+          ready_out<=ready_in;   //valid打拍
      
     end
     always @(posedge clk or negedge rst_n) begin
