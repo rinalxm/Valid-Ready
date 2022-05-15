@@ -2,9 +2,9 @@
  
 module  valid_ready(
   input        rst_n  ,
-	input 				clk 	,   
-	input				valid		,
-	input	 			ready		,
+  input 	clk 	,   
+  input		valid	,
+  input	      ready,
   input       data_in ,
   output      data_out,
 );       
