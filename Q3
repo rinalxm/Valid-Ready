@@ -2,9 +2,9 @@
  
 module  valid_ready(
   input        rst_n  ,
-	input 				clk 	,   
-	input				valid		,
-	input	 			ready_in,
+  input 	clk 	,   
+  input		valid	,
+  input	 	ready_in,
   input       ready_out,
   input       data_in ,
   output      data_out,
@@ -41,7 +41,7 @@ module  valid_ready(
         else if( valid )  
             ready_out <=1 ; 
         else if(!valid&&ready_out)
-          ready_out<=ready_in;   //valid打拍
+          ready_out<=ready_in;   //ready打拍
      
     end
     always @(posedge clk or negedge rst_n) begin
