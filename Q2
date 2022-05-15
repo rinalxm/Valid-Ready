@@ -3,10 +3,10 @@
  
 module  valid_ready(
   input        rst_n  ,
-	input 				clk 	,   
-	input				valid_in,
-  input       vlid_out,
-	input	 			ready		,
+  input 	clk 	,   
+  input		valid_in,
+  input       valid_out,
+  input	 	ready,
   input       data_in ,
   output      data_out,
 );       
